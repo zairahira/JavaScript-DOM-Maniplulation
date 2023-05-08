@@ -116,3 +116,62 @@ Loop is required to apply a style to multiple items.
     console.log(firstListItem.innerText);
     console.log(firstListItem.textContent);    
     console.log(firstListItem.innerHTML); // not recommended due to security issues
+
+
+## Modifying element attributes and classes using `setAttribute()` and `removeAttribute()`
+
+ 
+  
+
+    //Modifying the text
+    
+    li.innerText = "X-men";
+    
+      
+    // Modifying attributes and classes 
+    
+    li.setAttribute('class', 'list-items');
+    
+      // remove attribute
+    
+    li.removeAttribute('class')
+
+## Modifying element attributes and classes using `classList.add()` and `classList.remove()`
+
+    li.classList.add('list-items'); // same as li.setAttribute('class', 'list-items');
+    li.classList.remove('list-items')
+
+  
+
+## Find if an element has a specific class using `classList.contains()`
+
+    console.log(li.classList.contains('list-items'));
+
+# Traversing the DOM
+
+## Parent node traversal
+
+    let  ul = document.querySelector('ul');
+    
+    console.log(ul.parentNode);
+    console.log(ul.parentElement);
+
+ 
+ 
+
+    // parent's parent
+    console.log(ul.parentNode.parentNode); // parent's parent
+
+    
+    console.log(ul.parentElement.parentNode); // parent's parent 
+  
+## Minute difference between `.parentNode` and `.parentElement`
+
+
+    const  html = document.documentElement;
+    
+      
+    
+    console.log(html.parentElement); // returns null
+    
+    console.log(html.parentNode); // returns #document
