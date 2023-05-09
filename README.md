@@ -175,3 +175,70 @@ Loop is required to apply a style to multiple items.
     console.log(html.parentElement); // returns null
     
     console.log(html.parentNode); // returns #document
+    
+    
+   
+## Child node traversal
+
+    let  ul = document.querySelector('ul');
+      
+    
+    console.log(ul.childNodes);
+    console.log(ul.firstChild);
+    console.log(ul.lastChild);
+    
+     
+    ul.childNodes[1].style.backgroundColor = 'blue';
+
+
+## Sibling traversal
+
+    let  ul = document.querySelector('ul');   
+    
+    console.log(ul.previousElementSibling);    
+    console.log(ul.nextElementSibling);    
+    console.log(ul.nextSibling);    
+    console.log(ul.previousSibling);
+
+
+## Event listeners
+See the sample file: eventlistener.html.
+
+1. Include directly in HTML
+
+```
+<button  onclick="alert('I love JS')">Enter</button>
+```
+
+2. Click event
+
+```
+const buttonTwo = document.querySelector('.btn-2')
+
+
+function alertBtn() {
+    alert('i love js2');
+};
+
+buttonTwo.addEventListener("click", alertBtn);
+
+
+```
+3. mouseover event
+
+```html
+<div id="my-element">Hover over me</div>
+
+```
+
+```js
+const element = document.getElementById("my-element");
+
+element.addEventListener("mouseover", function() {
+  console.log("Mouse is over the element");
+});
+
+```
+
+More event listeners: https://www.w3schools.com/jsref/dom_obj_event.asp
+
