@@ -242,3 +242,335 @@ element.addEventListener("mouseover", function() {
 
 More event listeners: https://www.w3schools.com/jsref/dom_obj_event.asp
 
+
+
+## Event propagation
+
+There are three phases of event propagation:
+
+1.  Capturing phase: During this phase, the event is first captured by the outermost element (the root of the DOM tree) and then propagated down through the nested elements until it reaches the target element.
+    
+2.  Target phase: During this phase, the event has reached the target element, and any event listeners attached to the target element will be executed.
+    
+3.  Bubbling phase: During this phase, the event is propagated back up the DOM tree from the target element to the outermost element, and any event listeners attached to any of the elements in the path will be executed.
+
+**sample HTML:**
+
+```html
+
+<!DOCTYPE  html>
+
+<html  lang="en">
+
+<head>
+
+<meta  charset="UTF-8">
+
+<meta  http-equiv="X-UA-Compatible"  content="IE=edge">
+
+<meta  name="viewport"  content="width=device-width, initial-scale=1.0">
+
+<title>Document</title>
+
+</head>
+
+<body>
+
+<div  class="div2">
+
+2
+
+<div  class="div1">
+
+1
+
+<button>click</button>
+
+</div>
+
+</div>
+
+</body>
+
+<script  src="app.js"></script>
+
+  
+
+</html>
+
+```
+
+
+## event capturing
+
+```
+// Event propagation
+
+  
+
+// bubbling off by default
+
+  
+
+window.addEventListener("click", function(){
+
+console.log('window')
+
+}, true);
+
+  
+  
+
+document.addEventListener("click", function(){
+
+console.log('Document')
+
+}, true);
+
+  
+  
+
+document.querySelector(".div2").addEventListener
+
+("click", function(){
+
+console.log('DIV 2')
+
+}, true);
+
+  
+
+document.querySelector(".div1").addEventListener
+
+("click", function(){
+
+console.log('DIV 1')
+
+}, true);
+
+  
+  
+
+document.querySelector("button").addEventListener
+
+("click", function(e){
+
+console.log(e)
+// `e`is event object, has details of the target element.
+
+}, true);
+
+```
+
+
+to initiate bubbling, set `true` to `false`.
+also, false by default
+
+```
+// Event propagation
+
+  
+
+// bubbling on
+
+  
+
+window.addEventListener("click", function(){
+
+console.log('window')
+
+}, false);
+
+  
+  
+
+document.addEventListener("click", function(){
+
+console.log('Document')
+
+}, false);
+
+  
+  
+
+document.querySelector(".div2").addEventListener
+
+("click", function(){
+
+console.log('DIV 2')
+
+}, false);
+
+  
+
+document.querySelector(".div1").addEventListener
+
+("click", function(){
+
+console.log('DIV 1')
+
+}, false);
+
+  
+  
+
+document.querySelector("button").addEventListener
+
+("click", function(e){
+
+console.log(e)
+
+}, false);
+
+```
+
+
+you can stop bubbling with `stopPropagation()`
+
+## stop event bubbling and capturing with `stopPropagation()`
+
+you can also stop event capturing with `stopPropagation()
+
+### stop bubbling
+
+```
+// Stop Event bubbling
+ 
+
+window.addEventListener("click", function(){
+
+console.log('window')
+
+}, false);
+
+  
+  
+
+document.addEventListener("click", function(){
+
+console.log('Document')
+
+}, false);
+
+  
+  
+
+document.querySelector(".div2").addEventListener
+
+("click", function(e){
+
+e.stopPropagation();
+
+console.log('DIV 2')
+
+}, false);
+
+  
+
+document.querySelector(".div1").addEventListener
+
+("click", function(){
+
+console.log('DIV 1')
+
+}, false);
+
+  
+  
+
+document.querySelector("button").addEventListener
+
+("click", function(e){
+
+console.log(e)
+
+}, false);
+
+```
+
+### stop capturing
+
+set `false` to `true`
+
+```
+// Event propagation
+
+  
+
+// bubbling off by default
+
+  
+
+window.addEventListener("click", function(){
+
+console.log('window')
+
+}, true);
+
+  
+  
+
+document.addEventListener("click", function(){
+
+console.log('Document')
+
+}, true);
+
+  
+  
+
+document.querySelector(".div2").addEventListener
+
+("click", function(e){
+
+e.stopPropagation();
+
+console.log('DIV 2')
+
+}, true);
+
+  
+
+document.querySelector(".div1").addEventListener
+
+("click", function(){
+
+console.log('DIV 1')
+
+}, true);
+
+  
+  
+
+document.querySelector("button").addEventListener
+
+("click", function(e){
+
+console.log(e)
+
+}, true);
+
+```
+
+
+
+
+`once: true` fire off once.
+
+```
+// DIV 2 would be fired only once
+
+document.querySelector(".div2").addEventListener
+
+("click", function(e){
+
+// e.stopPropagation();
+
+console.log('DIV 2')
+
+}, {once:  true});
+
+```
+
+
+In that case, the `true` is a boolean value used to indicate whether the event should be handled in the capturing phase or the bubbling phase of the event propagation. If `true` is used, the event is handled in the capturing phase, and if `false` is used (or omitted), the event is handled in the bubbling phase.
