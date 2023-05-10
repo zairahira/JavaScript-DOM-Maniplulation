@@ -574,3 +574,82 @@ console.log('DIV 2')
 
 
 In that case, the `true` is a boolean value used to indicate whether the event should be handled in the capturing phase or the bubbling phase of the event propagation. If `true` is used, the event is handled in the capturing phase, and if `false` is used (or omitted), the event is handled in the bubbling phase.
+
+## Event delegation
+
+### Attaching a style to parent to apply to children
+
+```html
+
+// Event propagation
+// Event delegation
+
+// append a single event listener to a parent element that adds it to
+//all of its present and future descendants that match a selector
+
+<!DOCTYPE  html>
+
+<html  lang="en">
+
+<head>
+
+<meta  charset="utf-8"/>
+
+<title>Events: Task 3</title>
+
+</head>
+
+  
+
+<body>
+
+<ul  id="sports">
+
+<li>Football</li>
+
+<li>Basketball</li>
+
+<li>Baseball</li>
+
+</ul>
+
+  
+  
+
+<script>
+
+  
+
+// Add your code here
+
+document.querySelector('#sports').addEventListener
+
+  
+
+('click', function(e){
+
+console.log(e.target.getAttribute('id') + 'is clicked');
+
+  
+
+const  target = e.target;
+
+  
+
+if(target.matches('li')){
+
+target.style.backgroundColor = 'lightgrey';
+
+}
+
+})
+
+  
+
+</script>
+
+</body>
+
+</html>
+
+```
