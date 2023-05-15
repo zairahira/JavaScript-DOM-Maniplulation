@@ -37,184 +37,181 @@ In this diagram, the root of the tree is the HTML element. It has three children
 ## 5 ways to select elements in a DOM
 
 ###   `getElementById()`
-selects the element by the id, startis with # in html tag
 
-    const  title = document.getElementById('main-heading');
-    console.log(title);
+Selects the element by the id, startis with # in html tag
 
+```javascript
+const  title = document.getElementById('main-heading');
+console.log(title);
+```
 
 ###   `getElementByClassName`
 
-    const  listItem = document.getElementsByClassName('list-items');
-    console.log(listItem);
+```javascript
+const  listItem = document.getElementsByClassName('list-items');
+console.log(listItem);
+```
 
 ###   `getElementsByTagName()`
 
-    const  listItem = document.getElementsByTagName('li');
-    console.log(listItem);
+```javascript
+const  listItem = document.getElementsByTagName('li');
+console.log(listItem);
+```
 
 ###   `queryselector()`
 
-    // selects only the first occurrence  
-    
-    const  container = document.querySelector('div');
-    console.log(container);
+```javascript
+// selects only the first occurrence  
+const  container = document.querySelector('div');
+console.log(container);
+```
 
 ###   `querySelectorAll()`
 
-    // selects all of the occurrences
-    
-    const  container = document.querySelectorAll('div');
-    console.log(container);
+```javascript
+// selects all of the occurrences
+
+const  container = document.querySelectorAll('div');
+console.log(container);
+```
 
 ## Styling an element
 
-  
-
-    const  title = document.querySelector('#main-heading');
-    
-    title.style.color = 'red';
+```javascript
+const  title = document.querySelector('#main-heading');
+title.style.color = 'red';
+```
 
 ### Styling multiple elements, like list items
 
 Loop is required to apply a style to multiple items.
 
-    const  listItems = document.querySelectorAll('.list-items'); //classes start with a dot
-    
-    //listItems.style.color = 'red';
-    
-      
-    
-    for(i = 0; i <listItems.length; i++){
-    
-	    listItems[i].style.color = 'red';
-        listItems[i].style.fontSize = '5rem'; 
-     
-    }
+const  listItems = document.querySelectorAll('.list-items'); //classes start with a dot
 
+```javascript
+//listItems.style.color = 'red';
+for(i = 0; i <listItems.length; i++){
+
+  listItems[i].style.color = 'red';
+    listItems[i].style.fontSize = '5rem'; 
+}
+```
 
 ## Creating new elements using `document.createElement()`
 
   
+```javascript
+const  ul = document.querySelector('ul');
+const  li = document.createElement('li');
 
-    const  ul = document.querySelector('ul');
-    const  li = document.createElement('li');
-    
-    // Adding elements
-    ul.append(li);
-      
-    // check in console and elements tab, there would be an emplty `<li>`
-    
-    console.log();
+// Adding elements
+ul.append(li);
+  
+// check in console and elements tab, there would be an emplty `<li>`
 
+console.log();
+```
 
 ## Modifying text using `innerText`, `textContent` and `innerHTML`
 
-    const  firstListItem = document.querySelector('.list-items');
-    
-     
-    console.log(firstListItem.innerText);
-    console.log(firstListItem.textContent);    
-    console.log(firstListItem.innerHTML); // not recommended due to security issues
-
+```javascript
+const  firstListItem = document.querySelector('.list-items');    
+console.log(firstListItem.innerText);
+console.log(firstListItem.textContent);    
+console.log(firstListItem.innerHTML); // not recommended due to security issues
+```
 
 ## Modifying element attributes and classes using `setAttribute()` and `removeAttribute()`
 
- 
-  
+```javascript
+//Modifying the text
+li.innerText = "X-men";
 
-    //Modifying the text
-    
-    li.innerText = "X-men";
-    
-      
-    // Modifying attributes and classes 
-    
-    li.setAttribute('class', 'list-items');
-    
-      // remove attribute
-    
-    li.removeAttribute('class')
+
+// Modifying attributes and classes 
+li.setAttribute('class', 'list-items');
+
+// remove attribute
+li.removeAttribute('class')
+```
 
 ## Modifying element attributes and classes using `classList.add()` and `classList.remove()`
 
-    li.classList.add('list-items'); // same as li.setAttribute('class', 'list-items');
-    li.classList.remove('list-items')
-
+```javascript
+li.classList.add('list-items'); // same as li.setAttribute('class', 'list-items');
+li.classList.remove('list-items')
+```
   
 
 ## Find if an element has a specific class using `classList.contains()`
 
-    console.log(li.classList.contains('list-items'));
+```javascript
+console.log(li.classList.contains('list-items'));
+```
 
 # Traversing the DOM
 
 ## Parent node traversal
 
-    let  ul = document.querySelector('ul');
-    
-    console.log(ul.parentNode);
-    console.log(ul.parentElement);
+```javascript
+let  ul = document.querySelector('ul');
 
- 
- 
+console.log(ul.parentNode);
+console.log(ul.parentElement);
 
-    // parent's parent
-    console.log(ul.parentNode.parentNode); // parent's parent
+// parent's parent
+console.log(ul.parentNode.parentNode); // parent's parent
+console.log(ul.parentElement.parentNode); // parent's parent 
+```
 
-    
-    console.log(ul.parentElement.parentNode); // parent's parent 
-  
 ## Minute difference between `.parentNode` and `.parentElement`
 
+```javascript
+const  html = document.documentElement;
 
-    const  html = document.documentElement;
-    
-      
-    
-    console.log(html.parentElement); // returns null
-    
-    console.log(html.parentNode); // returns #document
-    
+console.log(html.parentElement); // returns null
+console.log(html.parentNode); // returns #document
+```
     
    
 ## Child node traversal
 
-    let  ul = document.querySelector('ul');
-      
+```javascript
+let  ul = document.querySelector('ul');
     
-    console.log(ul.childNodes);
-    console.log(ul.firstChild);
-    console.log(ul.lastChild);
-    
-     
-    ul.childNodes[1].style.backgroundColor = 'blue';
+console.log(ul.childNodes);
+console.log(ul.firstChild);
+console.log(ul.lastChild);
 
+    
+ul.childNodes[1].style.backgroundColor = 'blue';
+```
 
 ## Sibling traversal
 
-    let  ul = document.querySelector('ul');   
-    
-    console.log(ul.previousElementSibling);    
-    console.log(ul.nextElementSibling);    
-    console.log(ul.nextSibling);    
-    console.log(ul.previousSibling);
+```javascript
+let  ul = document.querySelector('ul');   
 
+console.log(ul.previousElementSibling);    
+console.log(ul.nextElementSibling);    
+console.log(ul.nextSibling);    
+console.log(ul.previousSibling);
+```
 
 ## Event listeners
 See the sample file: eventlistener.html.
 
 1. Include directly in HTML
 
-```
+```html
 <button  onclick="alert('I love JS')">Enter</button>
 ```
 
 2. Click event
 
-```
+```javascript
 const buttonTwo = document.querySelector('.btn-2')
-
 
 function alertBtn() {
     alert('i love js2');
@@ -224,6 +221,7 @@ buttonTwo.addEventListener("click", alertBtn);
 
 
 ```
+
 3. mouseover event
 
 ```html
@@ -258,169 +256,101 @@ There are three phases of event propagation:
 
 ```html
 
-<!DOCTYPE  html>
-
-<html  lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
-<meta  charset="UTF-8">
-
-<meta  http-equiv="X-UA-Compatible"  content="IE=edge">
-
-<meta  name="viewport"  content="width=device-width, initial-scale=1.0">
-
-<title>Document</title>
-
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
-
 <body>
-
-<div  class="div2">
-
-2
-
-<div  class="div1">
-
-1
-
-<button>click</button>
-
-</div>
-
-</div>
-
+  <div class="div2">
+    2
+    <div class="div1">
+      1
+      <button>click</button>
+    </div>
+  </div>
 </body>
-
-<script  src="app.js"></script>
-
-  
+<script src="app.js"></script>
 
 </html>
-
 ```
 
 
 ## event capturing
 
-```
-// Event propagation
+```javascript
 
-  
+// Event propagation
 
 // bubbling off by default
 
-  
-
-window.addEventListener("click", function(){
-
-console.log('window')
-
+window.addEventListener("click", function () {
+    console.log('window')
 }, true);
 
-  
-  
 
-document.addEventListener("click", function(){
-
-console.log('Document')
-
+document.addEventListener("click", function () {
+    console.log('Document')
 }, true);
 
-  
-  
 
 document.querySelector(".div2").addEventListener
-
-("click", function(){
-
-console.log('DIV 2')
-
-}, true);
-
-  
+    ("click", function () {
+        console.log('DIV 2')
+    }, true);
 
 document.querySelector(".div1").addEventListener
+    ("click", function () {
+        console.log('DIV 1')
+    }, true);
 
-("click", function(){
-
-console.log('DIV 1')
-
-}, true);
-
-  
-  
 
 document.querySelector("button").addEventListener
-
-("click", function(e){
-
-console.log(e)
-// `e`is event object, has details of the target element.
-
-}, true);
-
+    ("click", function (e) {
+        console.log(e)
+        // `e`is event object, has details of the target element.
+    }, true);
 ```
 
 
 to initiate bubbling, set `true` to `false`.
 also, false by default
 
-```
-// Event propagation
+```javascript
 
-  
+
+// Event propagation
 
 // bubbling on
 
-  
-
-window.addEventListener("click", function(){
-
-console.log('window')
-
+window.addEventListener("click", function () {
+    console.log('window')
 }, false);
 
-  
-  
 
-document.addEventListener("click", function(){
-
-console.log('Document')
-
+document.addEventListener("click", function () {
+    console.log('Document')
 }, false);
 
-  
-  
 
 document.querySelector(".div2").addEventListener
-
-("click", function(){
-
-console.log('DIV 2')
-
-}, false);
-
-  
+    ("click", function () {
+        console.log('DIV 2')
+    }, false);
 
 document.querySelector(".div1").addEventListener
+    ("click", function () {
+        console.log('DIV 1')
+    }, false);
 
-("click", function(){
-
-console.log('DIV 1')
-
-}, false);
-
-  
-  
 
 document.querySelector("button").addEventListener
-
-("click", function(e){
-
-console.log(e)
-
-}, false);
+    ("click", function (e) {
+        console.log(e)
+    }, false);
 
 ```
 
@@ -433,58 +363,35 @@ you can also stop event capturing with `stopPropagation()
 
 ### stop bubbling
 
-```
+```javascript
 // Stop Event bubbling
- 
 
-window.addEventListener("click", function(){
-
-console.log('window')
-
+window.addEventListener("click", function () {
+    console.log('window')
 }, false);
 
-  
-  
 
-document.addEventListener("click", function(){
-
-console.log('Document')
-
+document.addEventListener("click", function () {
+    console.log('Document')
 }, false);
 
-  
-  
 
 document.querySelector(".div2").addEventListener
-
-("click", function(e){
-
-e.stopPropagation();
-
-console.log('DIV 2')
-
-}, false);
-
-  
+    ("click", function (e) {
+        e.stopPropagation();
+        console.log('DIV 2')
+    }, false);
 
 document.querySelector(".div1").addEventListener
+    ("click", function () {
+        console.log('DIV 1')
+    }, false);
 
-("click", function(){
-
-console.log('DIV 1')
-
-}, false);
-
-  
-  
 
 document.querySelector("button").addEventListener
-
-("click", function(e){
-
-console.log(e)
-
-}, false);
+    ("click", function (e) {
+        console.log(e)
+    }, false);
 
 ```
 
@@ -492,63 +399,37 @@ console.log(e)
 
 set `false` to `true`
 
-```
+```javascript
 // Event propagation
-
-  
 
 // bubbling off by default
 
-  
-
-window.addEventListener("click", function(){
-
-console.log('window')
-
+window.addEventListener("click", function () {
+    console.log('window')
 }, true);
 
-  
-  
 
-document.addEventListener("click", function(){
-
-console.log('Document')
-
+document.addEventListener("click", function () {
+    console.log('Document')
 }, true);
 
-  
-  
 
 document.querySelector(".div2").addEventListener
-
-("click", function(e){
-
-e.stopPropagation();
-
-console.log('DIV 2')
-
-}, true);
-
-  
+    ("click", function (e) {
+        e.stopPropagation();
+        console.log('DIV 2')
+    }, true);
 
 document.querySelector(".div1").addEventListener
+    ("click", function () {
+        console.log('DIV 1')
+    }, true);
 
-("click", function(){
-
-console.log('DIV 1')
-
-}, true);
-
-  
-  
 
 document.querySelector("button").addEventListener
-
-("click", function(e){
-
-console.log(e)
-
-}, true);
+    ("click", function (e) {
+        console.log(e)
+    }, true);
 
 ```
 
@@ -557,18 +438,13 @@ console.log(e)
 
 `once: true` fire off once.
 
-```
+```javascript
 // DIV 2 would be fired only once
-
 document.querySelector(".div2").addEventListener
-
-("click", function(e){
-
-// e.stopPropagation();
-
-console.log('DIV 2')
-
-}, {once:  true});
+    ("click", function (e) {
+        // e.stopPropagation();
+        console.log('DIV 2')
+    }, { once: true });
 
 ```
 
@@ -583,73 +459,33 @@ In that case, the `true` is a boolean value used to indicate whether the event s
 
 // Event propagation
 // Event delegation
-
 // append a single event listener to a parent element that adds it to
 //all of its present and future descendants that match a selector
 
 <!DOCTYPE  html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <title>Events: Task 3</title>
+        </head>
+        <body>
+            <ul id="sports">
+                <li>Football</li>
+                <li>Basketball</li>
+                <li>Baseball</li>
+            </ul>
 
-<html  lang="en">
-
-<head>
-
-<meta  charset="utf-8"/>
-
-<title>Events: Task 3</title>
-
-</head>
-
-  
-
-<body>
-
-<ul  id="sports">
-
-<li>Football</li>
-
-<li>Basketball</li>
-
-<li>Baseball</li>
-
-</ul>
-
-  
-  
-
-<script>
-
-  
-
-// Add your code here
-
-document.querySelector('#sports').addEventListener
-
-  
-
-('click', function(e){
-
-console.log(e.target.getAttribute('id') + 'is clicked');
-
-  
-
-const  target = e.target;
-
-  
-
-if(target.matches('li')){
-
-target.style.backgroundColor = 'lightgrey';
-
+            <script>
+                document.querySelector('#sports').addEventListener
+                ('click', function(e){
+                    console.log(e.target.getAttribute('id') + 'is clicked');
+                const  target = e.target;
+                if(target.matches('li')){
+                    target.style.backgroundColor = 'lightgrey';
 }
-
 })
-
-  
-
-</script>
-
-</body>
-
-</html>
+            </script>
+        </body>
+    </html>
 
 ```
